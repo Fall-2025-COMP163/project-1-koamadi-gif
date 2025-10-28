@@ -6,7 +6,39 @@ Date: 10/28/2025
 AI Usage: [Document any AI assistance used]
 Example: AI helped with file I/O error handling logic in save_character function
 """
-
+def calculate_stats(character_class, level):
+    """
+    Calculates base stats based on class and level
+    Returns: tuple of (strength, magic, health)
+    
+    Design your own formulas! Ideas:
+    - Warriors: High strength, low magic, high health
+    - Mages: Low strength, high magic, medium health  
+    - Rogues: Medium strength, medium magic, low health
+    - Clerics: Medium strength, high magic, high health
+    """
+    # TODO: Implement this function
+    # Return a tuple: (strength, magic, health)
+    if character_class == "Gladiator":
+        strength = 10 + level * 3
+        magic = 3 + level
+        health = 120 + level * 10
+    elif character_class == "Mage":
+        strength = 4 + level
+        magic = 12 + level * 3
+        health = 80 + level * 5
+    elif character_class == "Ninja":
+        strength = 7 + level * 2
+        magic = 6 + level * 2
+        health = 90 + level * 6
+    elif character_class == "Knight":
+        strength = 6 + level * 2
+        magic = 10 + level * 2
+        health = 100 + level * 8
+        
+    return (strength, magic, health)
+    pass
+    
 def create_character(name, character_class):
     """
     Creates a new character dictionary with calculated stats
@@ -33,40 +65,8 @@ def create_character(name, character_class):
     }
     pass
 
-def calculate_stats(character_class, level):
-    """
-    Calculates base stats based on class and level
-    Returns: tuple of (strength, magic, health)
-    
-    Design your own formulas! Ideas:
-    - Warriors: High strength, low magic, high health
-    - Mages: Low strength, high magic, medium health  
-    - Rogues: Medium strength, medium magic, low health
-    - Clerics: Medium strength, high magic, high health
-    """
-    # TODO: Implement this function
-    # Return a tuple: (strength, magic, health)
-     if character_class == "Gladiator":
-        strength = 10 + level * 3
-        magic = 3 + level
-        health = 120 + level * 10
-    elif character_class == "Mage":
-        strength = 4 + level
-        magic = 12 + level * 3
-        health = 80 + level * 5
-    elif character_class == "Ninja":
-        strength = 7 + level * 2
-        magic = 6 + level * 2
-        health = 90 + level * 6
-    elif character_class == "Knight":
-        strength = 6 + level * 2
-        magic = 10 + level * 2
-        health = 100 + level * 8
-        
-    return (strength, magic, health)
-    pass
-
 def save_character(character, filename):
+
     """
     Saves character to text file in specific format
     Returns: True if successful, False if error occurred
@@ -82,6 +82,15 @@ def save_character(character, filename):
     """
     # TODO: Implement this function
     # Remember to handle file errors gracefully
+    with open(filename, "w") as file:
+        file.write(f"Character Name: {character['name']}\n")
+        file.write(f"Class: {character['class']}\n")
+        file.write(f"Level: {character['level']}\n")
+        file.write(f"Strength: {character['strength']}\n")
+        file.write(f"Magic: {character['magic']}\n")
+        file.write(f"Health: {character['health']}\n")
+        file.write(f"Gold: {character['gold']}\n")
+        return True
     pass
 
 def load_character(filename):
