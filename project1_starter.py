@@ -11,19 +11,19 @@ def calculate_stats(character_class, level):
     Calculates base stats based on class and level.
     Returns a tuple of (strength, magic, health)
     """
-    if character_class() == "Gladiator":
+    if character_class.lower() == "warrior":
         strength = 10 + (level * 5)
         magic = 3 + (level * 2)
         health = 100 + (level * 10)
-    elif character_class() == "Mage":
+    elif character_class.lower() == "mage":
         strength = 4 + (level * 2)
         magic = 12 + (level * 6)
         health = 80 + (level * 8)
-    elif character_class() == "Ninja":
+    elif character_class.lower() == "rogue":
         strength = 7 + (level * 4)
         magic = 6 + (level * 3)
         health = 70 + (level * 7)
-    elif character_class() == "Ranger":
+    elif character_class.lower() == "cleric":
         strength = 6 + (level * 3)
         magic = 10 + (level * 5)
         health = 90 + (level * 9)
@@ -86,27 +86,27 @@ def save_character(character, filename):
 
 
 def load_character(filename):
+    
     """
     Loads character from text file and returns a dictionary.
     Returns None if file is not found.
     """
-    try:
-        with open(filename, "r") as file:
-            lines = file.readlines()
+    with open(filename, "r") as file:
+        lines = file.readlines()
 
-        character = {}
-        for line in lines:
-            key, value = line.strip().split(": ")
-            character[key] = value
+    character = {}
+    for line in lines:
+        key, value = line.strip().split(": ")
+        character[key] = value
 
-        return {
-            "name": character["Character Name"],
-            "class": character["Class"],
-            "level": int(character["Level"]),
-            "strength": int(character["Strength"]),
-            "magic": int(character["Magic"]),
-            "health": int(character["Health"]),
-            "gold": int(character["Gold"])
+    return {
+        "name": character["Character Name"],
+        "class": character["Class"],
+        "level": int(character["Level"]),
+        "strength": int(character["Strength"]),
+        "magic": int(character["Magic"]),
+        "health": int(character["Health"]),
+        "gold": int(character["Gold"])
         }
     except FileNotFoundError:
         print("File not found.")
@@ -139,8 +139,7 @@ def level_up(character):
     print(f"\n{character['name']} leveled up to level {character['level']}!")
 
 
-
-# Main program area (optional - for testing your functions)
+# Optional testing block
 if __name__ == "__main__":
     print("=== CHARACTER CREATOR ===")
     print("Testing functions...")
