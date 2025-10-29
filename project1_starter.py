@@ -143,10 +143,16 @@ def level_up(character):
 # Main program area (optional - for testing your functions)
 if __name__ == "__main__":
     print("=== CHARACTER CREATOR ===")
-    print("Test your functions here!")
-    
-    # Example usage:
-    # char = create_character("TestHero", "Warrior")
-    # display_character(char)
-    # save_character(char, "my_character.txt")
-    # loaded = load_character("my_character.txt")
+    print("Testing functions...")
+
+    # Example usage
+    hero = create_character("Aria", "Mage")
+    display_character(hero)
+    save_character(hero, "hero.txt")
+
+    loaded = load_character("hero.txt")
+    if loaded:
+        print("\nLoaded Character:")
+        display_character(loaded)
+
+    level_up(hero)
