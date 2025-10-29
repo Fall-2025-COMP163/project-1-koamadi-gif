@@ -1,3 +1,5 @@
+import os
+
 """
 COMP 163 - Project 1: Character Creator & Saving/Loading
 Name: Kobby Amadi
@@ -86,11 +88,14 @@ def save_character(character, filename):
 
 
 def load_character(filename):
-    
     """
     Loads character from text file and returns a dictionary.
     Returns None if file is not found.
     """
+    if not os.path.exists(filename):
+        print("File not found.")
+        return None
+
     with open(filename, "r") as file:
         lines = file.readlines()
 
@@ -107,10 +112,8 @@ def load_character(filename):
         "magic": int(character["Magic"]),
         "health": int(character["Health"]),
         "gold": int(character["Gold"])
-        }
-    except FileNotFoundError:
-        print("File not found.")
-        return None
+    }
+
 
 
 def display_character(character):
