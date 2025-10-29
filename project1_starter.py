@@ -13,19 +13,19 @@ def calculate_stats(character_class, level):
     Calculates base stats based on class and level.
     Returns a tuple of (strength, magic, health)
     """
-    if character_class.lower() == "warrior":
+    if character_class() == "Gladiator":
         strength = 10 + (level * 5)
         magic = 3 + (level * 2)
         health = 100 + (level * 10)
-    elif character_class.lower() == "mage":
+    elif character_class() == "Mage":
         strength = 4 + (level * 2)
         magic = 12 + (level * 6)
         health = 80 + (level * 8)
-    elif character_class.lower() == "rogue":
+    elif character_class() == "Ninja":
         strength = 7 + (level * 4)
         magic = 6 + (level * 3)
         health = 70 + (level * 7)
-    elif character_class.lower() == "cleric":
+    elif character_class() == "Ranger":
         strength = 6 + (level * 3)
         magic = 10 + (level * 5)
         health = 90 + (level * 9)
