@@ -7,53 +7,46 @@ AI Usage: [Document any AI assistance used]
 Example: AI helped with file I/O error handling logic in save_character function
 """
 def calculate_stats(character_class, level):
-    """
-    Calculates base stats based on class and level
-    Returns: tuple of (strength, magic, health)
-    """
+    """Calculates base stats based on class and level."""
     if character_class == "Gladiator":
-        strength = 10
-        magic = 3 
-        health = 120 
+        strength = 10 + level * 2
+        magic = 3 + level
+        health = 120 + level * 10
     elif character_class == "Mage":
-        strength = 4 
-        magic = 12 
-        health = 80 
+        strength = 4 + level
+        magic = 12 + level * 3
+        health = 80 + level * 8
     elif character_class == "Ninja":
-        strength = 7 
-        magic = 6 
-        health = 90 
+        strength = 7 + level * 2
+        magic = 6 + level * 2
+        health = 90 + level * 7
     elif character_class == "Ranger":
-        strength = 6 
-        magic = 10 
-        health = 100 
-    else:
-        # Default stats for unknown class
-        strength = 5 
-        magic = 5
-        health = 100 
+        strength = 6 + level * 2
+        magic = 10 + level * 2
+        health = 100 + level * 9
 
     return (strength, magic, health)
 
 
 def create_character(name, character_class):
-    """
-    Creates a new character dictionary with calculated stats
-    """
+    """Creates a new character dictionary with calculated stats."""
     level = 1
-    strength, magic, health = calculate_stats(character_class, level)
-    gold = 100
 
-    return {
+    stats = calculate_stats(character_class, level)
+
+    strength, magic, health = stats
+
+    character = {
         "name": name,
         "class": character_class,
         "level": level,
         "strength": strength,
         "magic": magic,
         "health": health,
-        "gold": gold
+        "gold": 100
     }
 
+    return character
 
 def save_character(character, filename):
     """
