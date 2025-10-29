@@ -20,24 +20,24 @@ def calculate_stats(character_class, level):
     # TODO: Implement this function
     # Return a tuple: (strength, magic, health)
     if character_class == "Gladiator":
-        strength = 10 + level * 3
-        magic = 3 + level
-        health = 120 + level * 10
+        strength = 10 
+        magic = 3 
+        health = 120 
     elif character_class == "Mage":
-        strength = 4 + level
-        magic = 12 + level * 3
-        health = 80 + level * 5
+        strength = 4 
+        magic = 12 
+        health = 80
     elif character_class == "Ninja":
-        strength = 7 + level * 2
-        magic = 6 + level * 2
-        health = 90 + level * 6
+        strength = 7 
+        magic = 6 
+        health = 90 
     elif character_class == "Knight":
-        strength = 6 + level * 2
-        magic = 10 + level * 2
-        health = 100 + level * 8
+        strength = 6 
+        magic = 10 
+        health = 100 
         
     return (strength, magic, health)
-    pass
+    
     
 def create_character(name, character_class):
     """
@@ -52,7 +52,7 @@ def create_character(name, character_class):
     # Remember to use calculate_stats() function for stat calculation
     level = 1
     strength, magic, health = calculate_stats(character_class, level)
-    gold = 100  # Everyone starts with 100 gold
+    gold = 100  
     
     return {
         "name": name,
@@ -63,7 +63,7 @@ def create_character(name, character_class):
         "health": health,
         "gold": gold
     }
-    pass
+    
 
 def save_character(character, filename):
 
@@ -91,7 +91,7 @@ def save_character(character, filename):
         file.write(f"Health: {character['health']}\n")
         file.write(f"Gold: {character['gold']}\n")
         return True
-    pass
+    
 
 def load_character(filename):
     """
@@ -100,7 +100,26 @@ def load_character(filename):
     """
     # TODO: Implement this function
     # Remember to handle file not found errors
-    pass
+     with open(filename, "r") as file:
+            lines = file.readlines()
+
+        # Create a dictionary to store the values
+        character = {}
+        for line in lines:
+            key, value = line.strip().split(": ")
+            character[key] = value
+
+        # Convert numeric fields
+        return {
+            "name": character["Character Name"],
+            "class": character["Class"],
+            "level": int(character["Level"]),
+            "strength": int(character["Strength"]),
+            "magic": int(character["Magic"]),
+            "health": int(character["Health"]),
+            "gold": int(character["Gold"])
+        }
+    
 
 def display_character(character):
     """
@@ -118,7 +137,15 @@ def display_character(character):
     Gold: 100
     """
     # TODO: Implement this function
-    pass
+    print("=== CHARACTER SHEET ===")
+    print(f"Name: {character['name']}")
+    print(f"Class: {character['class']}")
+    print(f"Level: {character['level']}")
+    print(f"Strength: {character['strength']}")
+    print(f"Magic: {character['magic']}")
+    print(f"Health: {character['health']}")
+    print(f"Gold: {character['gold']}")
+
 
 def level_up(character):
     """
@@ -128,7 +155,13 @@ def level_up(character):
     """
     # TODO: Implement this function
     # Remember to recalculate stats for the new level
-    pass
+     character["level"] += 1
+    strength, magic, health = calculate_stats(character["class"], character["level"])
+    character["strength"] = strength
+    character["magic"] = magic
+    character["health"] = health
+    print(f"{character['name']} leveled up to Level {character['level']}!")
+
 
 # Main program area (optional - for testing your functions)
 if __name__ == "__main__":
