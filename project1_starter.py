@@ -73,6 +73,10 @@ def save_character(character, filename):
     Health: [health]
     Gold: [gold]
     """
+    if not character or not filename:
+        return False 
+
+
     with open(filename, "w") as file:
         file.write(f"Character Name: {character['name']}\n")
         file.write(f"Class: {character['class']}\n")
@@ -81,7 +85,8 @@ def save_character(character, filename):
         file.write(f"Magic: {character['magic']}\n")
         file.write(f"Health: {character['health']}\n")
         file.write(f"Gold: {character['gold']}\n")
-     return True
+
+    return True
 
 
 def load_character(filename):
