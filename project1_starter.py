@@ -74,9 +74,14 @@ def save_character(character, filename):
     Gold: [gold]
     """
     if not character or not filename:
-        return False 
+        return False
 
 
+    directory = os.path.dirname(filename)
+    if directory and not os.path.exists(directory):
+        return False  
+
+    
     with open(filename, "w") as file:
         file.write(f"Character Name: {character['name']}\n")
         file.write(f"Class: {character['class']}\n")
