@@ -73,18 +73,15 @@ def save_character(character, filename):
     Health: [health]
     Gold: [gold]
     """
-    try:
-        with open(filename, "w") as file:
-            file.write(f"Character Name: {character['name']}\n")
-            file.write(f"Class: {character['class']}\n")
-            file.write(f"Level: {character['level']}\n")
-            file.write(f"Strength: {character['strength']}\n")
-            file.write(f"Magic: {character['magic']}\n")
-            file.write(f"Health: {character['health']}\n")
-            file.write(f"Gold: {character['gold']}\n")
-        return True
-    except:
-        return False
+    with open(filename, "w") as file:
+        file.write(f"Character Name: {character['name']}\n")
+        file.write(f"Class: {character['class']}\n")
+        file.write(f"Level: {character['level']}\n")
+        file.write(f"Strength: {character['strength']}\n")
+        file.write(f"Magic: {character['magic']}\n")
+        file.write(f"Health: {character['health']}\n")
+        file.write(f"Gold: {character['gold']}\n")
+     return True
 
 
 def load_character(filename):
