@@ -9,21 +9,21 @@ Example: AI helped with file I/O error handling logic in save_character function
 def calculate_stats(character_class, level):
     """Calculates base stats based on class and level."""
     if character_class == "Gladiator":
-        strength = 10 + level * 2
-        magic = 3 + level
-        health = 120 + level * 10
+        strength = 10 
+        magic = 3
+        health = 120
     elif character_class == "Mage":
-        strength = 4 + level
-        magic = 12 + level * 3
-        health = 80 + level * 8
+        strength = 4
+        magic = 12 
+        health = 80 
     elif character_class == "Ninja":
-        strength = 7 + level * 2
-        magic = 6 + level * 2
-        health = 90 + level * 7
+        strength = 7 
+        magic = 6 
+        health = 90 
     elif character_class == "Ranger":
-        strength = 6 + level * 2
-        magic = 10 + level * 2
-        health = 100 + level * 9
+        strength = 6 
+        magic = 10 
+        health = 100 
 
     return (strength, magic, health)
 
@@ -49,11 +49,19 @@ def create_character(name, character_class):
     return character
 
 def save_character(character, filename):
+    with open(filename, "w") as file:
+        file.write(f"Character Name: {character['name']}\n")
+        file.write(f"Class: {character['class']}\n")
+        file.write(f"Level: {character['level']}\n")
+        file.write(f"Strength: {character['strength']}\n")
+        file.write(f"Magic: {character['magic']}\n")
+        file.write(f"Health: {character['health']}\n")
+        file.write(f"Gold: {character['gold']}\n")
+    return True
     """
     Saves character to text file in specific format
     """
-    try:
-        with open(filename, "w") as file:
+     with open(filename, "w") as file:
             file.write(f"Character Name: {character['name']}\n")
             file.write(f"Class: {character['class']}\n")
             file.write(f"Level: {character['level']}\n")
