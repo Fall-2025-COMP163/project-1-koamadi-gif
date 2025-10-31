@@ -121,7 +121,7 @@ def load_character(filename):
         print("File not found.")
         return None  # If the file doesn't exist it returns None
 
-    # Opens the file and read all lines into a list
+    # Opens the file and read all lines
     with open(filename, "r") as file:
         lines = file.readlines()
 
@@ -132,7 +132,7 @@ def load_character(filename):
         key, value = line.strip().split(": ")  # Split at ": " to separate the field name from its value
         character[key] = value  # Stored in the dictionary
 
-    # Convert the loaded string values into proper data types (integers for numeric fields)
+    # Convert the loaded string values into proper data types 
     return {
         "name": character["Character Name"],
         "class": character["Class"],
