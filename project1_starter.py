@@ -3,10 +3,9 @@ import os  # Import the OS module to work with file paths and check if files or 
 """
 COMP 163 - Project 1: Character Creator & Saving/Loading
 Name: Kobby Amadi
-Date: 10/28/2025
+Date: 10/31/2025
 
-AI Usage: [Document any AI assistance used]
-Example: AI helped with file I/O error handling logic in save_character function
+AI Usage: Google Gemini help with file errors and logic in functions.
 """
 
 
@@ -56,7 +55,7 @@ def create_character(name, character_class):
     """
     level = 1  # All new characters start at level 1
 
-    # Calculate base stats based on the chosen class and starting level
+    # Calculate base stats based on the character class and starting level
     strength, magic, health = calculate_stats(character_class, level)
 
     # Store all character data in a dictionary
@@ -73,9 +72,7 @@ def create_character(name, character_class):
     return character  # Return the completed character dictionary
 
 
-# =========================
-# FUNCTION: save_character
-# =========================
+
 def save_character(character, filename):
     """
     Saves character to text file in specific format.
@@ -89,20 +86,20 @@ def save_character(character, filename):
     Health: [health]
     Gold: [gold]
     """
-    # Validate input: if character data or filename is missing, stop and return False
+    # If character data or filename is missing, stop and return False
     if not character or not filename:
         return False
 
-    # Get the directory part of the file path (if any)
+    # Get the directory part of the file path
     directory = os.path.dirname(filename)
 
     # If the directory doesn’t exist, return False to prevent file errors
     if directory and not os.path.exists(directory):
         return False  
 
-    # Open the file in write mode ("w") — this creates or overwrites the file
+    # Opens the file to creates or overwrites the file
     with open(filename, "w") as file:
-        # Write each piece of character information in a formatted, readable way
+        # Write each piece of character information in a formatted way
         file.write(f"Character Name: {character['name']}\n")
         file.write(f"Class: {character['class']}\n")
         file.write(f"Level: {character['level']}\n")
@@ -111,24 +108,22 @@ def save_character(character, filename):
         file.write(f"Health: {character['health']}\n")
         file.write(f"Gold: {character['gold']}\n")
 
-    # If everything worked, return True
+    # If everything works return True
     return True
 
 
-# =========================
-# FUNCTION: load_character
-# =========================
+
 def load_character(filename):
     """
     Loads character from text file and returns a dictionary.
     Returns None if file is not found.
     """
-    # Check if the file exists before trying to open it
+    # Checks if the file exists before trying to open it
     if not os.path.exists(filename):
         print("File not found.")
-        return None  # Return None if file doesn’t exist
+        return None  # If the file doesn't exist it returns None
 
-    # Open the file and read all lines into a list
+    # Opens the file and read all lines into a list
     with open(filename, "r") as file:
         lines = file.readlines()
 
@@ -137,7 +132,7 @@ def load_character(filename):
     # Process each line from the file to extract key-value pairs
     for line in lines:
         key, value = line.strip().split(": ")  # Split at ": " to separate the field name from its value
-        character[key] = value  # Store in dictionary (e.g., "Class": "Mage")
+        character[key] = value  # Stored in the dictionary
 
     # Convert the loaded string values into proper data types (integers for numeric fields)
     return {
@@ -189,11 +184,11 @@ def level_up(character):
 
 
 if __name__ == "__main__":
-    # This section only runs when the script is executed directly (not imported)
+    # This section only runs when the script is fully executed
     print("=== CHARACTER CREATOR ===")
     print("Testing functions...")
 
-    # Create an example character named Aria, who is a Mage
+    # Creates an example character named Aria, who is a Mage
     hero = create_character("Aria", "Mage")
 
     # Display the character’s current stats
@@ -205,10 +200,10 @@ if __name__ == "__main__":
     # Load the saved character from the file
     loaded = load_character("hero.txt")
 
-    # If the load was successful, display the loaded character’s stats
+    # If the load is complete, it prints the loaded character's stats from display_character function.
     if loaded:
         print("\nLoaded Character:")
         display_character(loaded)
 
-    # Level up the hero and show updated stats
+    # Levels up the hero and show new stats
     level_up(hero)
