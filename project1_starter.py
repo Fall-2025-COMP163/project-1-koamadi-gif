@@ -14,22 +14,22 @@ def calculate_stats(character_class, level):
     Calculates base stats based on class and level.
     Returns a tuple of (strength, magic, health)
     """
-    if character_class.lower() == "gladiator":
+    if character_class() == "Gladiator":
         # Gladiators have high strength and health but low magic
         strength = 10 + (level * 5)
         magic = 3 + (level * 2)
         health = 100 + (level * 10)
-    elif character_class.lower() == "mage":
+    elif character_class() == "Mage":
         # Mages have low strength, high magic, and moderate health
         strength = 4 + (level * 2)
         magic = 12 + (level * 6)
         health = 80 + (level * 8)
-    elif character_class.lower() == "ninja":
+    elif character_class() == "Ninja":
         # Ninjas are balanced but fast-growing in all stats
         strength = 7 + (level * 4)
         magic = 6 + (level * 3)
         health = 70 + (level * 7)
-    elif character_class.lower() == "ranger":
+    elif character_class() == "Ranger":
         # Rangers have good balance, especially strong in health and magic
         strength = 6 + (level * 3)
         magic = 10 + (level * 5)
