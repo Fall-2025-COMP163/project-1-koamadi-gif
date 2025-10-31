@@ -44,9 +44,7 @@ def calculate_stats(character_class, level):
     return (strength, magic, health)
 
 
-# =========================
-# FUNCTION: create_character
-# =========================
+
 def create_character(name, character_class):
     """
     Creates a new character dictionary with calculated stats.
